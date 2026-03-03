@@ -4,8 +4,8 @@ class Request < ApplicationRecord
   has_many :chats, dependent: :destroy
 
   validates :cleanliness, presence: true, inclusion: { in: @cleanliness }
-  validates :fullness, presence: true
-  validates :newness, presence: true
+  validates :fullness, inclusion: { in: [true, false] }
+  validates :newness, inclusion: { in: [true, false] }
 
   has_one_attached :photo
 end
