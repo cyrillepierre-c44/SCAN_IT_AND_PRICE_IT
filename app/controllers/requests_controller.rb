@@ -19,7 +19,7 @@ class RequestsController < ApplicationController
 
   def show
     @request = Request.find(params[:id])
-    @chats = @request.chats.where(user_id: current_user.id)
+    @chats = @request.chats.where(user: current_user)
   end
 
   private
