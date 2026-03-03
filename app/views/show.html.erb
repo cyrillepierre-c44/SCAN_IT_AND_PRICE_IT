@@ -1,1 +1,33 @@
 <%= cl_image_tag @request.photo.key, height: 300, width: 400, crop: :fill %>
+
+<div class="row">
+  <div class="col">
+    <h1><%= @request.name %></h1>
+    <%= raw(render_markdown(@request.content)) %>
+  </div>
+  <div class="col-md-3">
+    <h2>Chats</h2>
+    <div class="mb-4">
+      <% if @chats.any? %>
+        <ul>
+          <% @chats.each do |chat| %>
+            <li><%= link_to chat.title, chat_path(chat) %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        There are no chats yet.
+      <% end %>
+      <div class="row">
+        <div class="col">
+          <h1><%= @request.name %></h1>
+          <%= raw(render_markdown(@request.content)) %>
+        </div>
+        <div class="col-md-3">
+          <h2>Chats</h2>
+          <!-- ... -->
+          <%= button_to "New chat", request_chats_path(@request), class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

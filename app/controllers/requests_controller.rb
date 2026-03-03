@@ -17,6 +17,11 @@ class RequestsController < ApplicationController
   def destroy
   end
 
+  def show
+    @request = Request.find(params[:id])
+    @chats = @request.chats.where(user_id: current_user.id)
+  end
+
   private
 
   def request_params
