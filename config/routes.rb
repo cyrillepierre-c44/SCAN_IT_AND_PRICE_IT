@@ -7,8 +7,6 @@ Rails.application.routes.draw do
   get "requests/update"
   get "requests/destroy"
   get "requests/request_params"
-
-  root to: "home#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
