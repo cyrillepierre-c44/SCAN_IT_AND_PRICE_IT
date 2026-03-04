@@ -1,15 +1,16 @@
-<h1>Requests#index</h1>
+<h1>LE JUSTE PRIX </h1>
+
+<P></P>
+
+<h2>Liste des recherches</h1>
 
 <% @requests.each do |request| %>
   <li><%= link_to request.id, request_path(request) %></li>
 <% end %>
 
-<br>
-<p>----------------------------------</p>
-<br>
+<p></p>
 
-<p><%= link_to "create a new request", requests_new_path %></p>
-
+<%= link_to "create a new request", requests_new_path, class: "btn btn-primary" %>
 
 <%#
 <%= simple_form_for(@request) do |f| %>

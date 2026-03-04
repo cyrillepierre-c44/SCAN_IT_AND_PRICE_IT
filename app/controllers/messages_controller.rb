@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-SYSTEM_PROMPT = "You are an expert in second hand vendor.\n\nI am a person working for a compagny that sells second hand objetcs as toys, wanting to know how much can I sell thems after cleaning.\n\nHelp me break to find the best second hand price regarding the cost of new and the second hand prcie you can fin if you lok the competitors.\n\nAnswer with à mid, low and high prices."
+SYSTEM_PROMPT = "You are an expert in second hand vendor for all types of objects.\n\nI am a person working for a compagny that sells second hand objects as toys, wanted to know how much can I sell them.\n\nHelp me to find the best second hand price regarding the cost of new and the second hand price you can find if you look at the competitors.\n\nAnswer me inside a table with a mid, low and high prices you will advise."
 
   def create
     @chat = current_user.chats.find(params[:chat_id])
