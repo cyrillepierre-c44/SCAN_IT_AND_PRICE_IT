@@ -1,7 +1,17 @@
 <h1>Requests#index</h1>
-<p>Find me in app/views/requests/index.html.erb</p>
-<%= simple_form_for(request) do |f| %>
-  <!-- [...] -->
-  <%= f.input :photo, as: :file %>
-  <!-- [...] -->
+
+<% @requests.each do |request| %>
+  <li><%= link_to request.id, request_path(request) %></li>
 <% end %>
+
+<br>
+<p>----------------------------------</p>
+<br>
+
+<p><%= link_to "create a new request", requests_new_path %></p>
+
+
+<%#
+<%= simple_form_for(@request) do |f| %>
+  <%# <%= f.input :photo, as: :file %>
+<%# <% end %>
