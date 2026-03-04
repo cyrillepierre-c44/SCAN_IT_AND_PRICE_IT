@@ -8,10 +8,12 @@ SYSTEM_PROMPT = "You are an expert in second hand vendor for all types of object
     @message = Message.new(message_params)
     @message.chat = @chat
     @message.role = "user"
+    @chat.generate_title_from_first_message
 
     if @message.save
-      ruby_llm_chat = RubyLLM.chat
-      response = ruby_llm_chat.with_instructions(SYSTEM_PROMPT).ask(@message.content)
+      @ruby_llm_chat = RubyLLM.chat
+      build_conversation_history
+      response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
       Message.create(role: "assistant", content: response.content, chat: @chat)
 
       redirect_to chat_path(@chat)
@@ -24,6 +26,20 @@ SYSTEM_PROMPT = "You are an expert in second hand vendor for all types of object
 
   def message_params
   params.require(:message).permit(:content)
+  end
+
+  def build_conversation_history
+    @chat.messages.each do |message|
+      @ruby_llm_chat.add_message(message)
+    end
+  end
+
+  def request_context
+    "Here is the context of the request: #{@request.system_prompt}."
+  end
+
+  def instructions
+    [SYSTEM_PROMPT, request_context, @request.system_prompt].compact.join("\n\n")
   end
 
 end

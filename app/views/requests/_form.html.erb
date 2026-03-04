@@ -1,0 +1,18 @@
+<h1>Request questionnaire</h1>
+
+<%= simple_form_for @request do |f| %>
+  <%= f.input :cleanliness,
+    label: "Niveau de propreté",
+    collection: ["Très sale", "Sale", "Propre", "Très propre"],
+    prompt: "Sélectionnez un niveau" %>
+
+  <%= f.input :fullness,
+    label: "Est-ce plein ?" %>
+
+  <%= f.input :newness,
+    label: "Est-ce neuf ?" %>
+
+  <%= f.input :system_prompt,
+    label: "Instructions supplémentaires", as: :text %>
+  <%= f.button :submit, "Créer la demande", class: "btn btn-primary" %>
+<% end %>

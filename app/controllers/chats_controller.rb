@@ -7,7 +7,7 @@ class ChatsController < ApplicationController
   def create
     @request = Request.find(params[:request_id])
 
-    @chat = Chat.new(title: "Untitled")
+    @chat = Chat.new(title: Chat::DEFAULT_TITLE)
     @chat.request = @request
     @chat.user = current_user
 
