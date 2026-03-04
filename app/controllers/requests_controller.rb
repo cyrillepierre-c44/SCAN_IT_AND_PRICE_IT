@@ -9,8 +9,8 @@ class RequestsController < ApplicationController
 
   def create
     @request  = Request.new(request_params)
-    if @request.save
-      redirect_to request_path(@request), notice: "request créée bro"
+    if @request.save!
+      redirect_to request_path(@request)
     else
       render :new, status: :unprocessable_entity
     end
