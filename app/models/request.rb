@@ -1,6 +1,6 @@
 class Request < ApplicationRecord
   @cleanliness = ["Très propre", "Propre", "Sale", "Très sale"]
-
+  has_one_attached :photo
   has_many :chats, dependent: :destroy
 
   validates :cleanliness, presence: true, inclusion: { in: @cleanliness }

@@ -1,18 +1,44 @@
 <h1>Request questionnaire</h1>
 
-<%= simple_form_for @request do |f| %>
-  <%= f.input :cleanliness,
-    label: "Niveau de propreté",
-    collection: ["Très sale", "Sale", "Propre", "Très propre"],
-    prompt: "Sélectionnez un niveau" %>
+<%= form_with model: @request, local: true do |f| %>
 
-  <%= f.input :fullness,
-    label: "Est-ce complet ?" %>
+  <div>
+    <%= f.label :cleanliness, "Niveau de propreté" %><br>
+    <%= f.select :cleanliness,
+          ["Très sale", "Sale", "Propre", "Très propre"],
+          { prompt: "Sélectionnez un niveau" } %>
+  </div>
 
-  <%= f.input :newness,
-    label: "Est-ce neuf ?" %>
+  <br>
 
-  <%= f.input :system_prompt,
-    label: "Instructions supplémentaires", as: :text %>
-  <%= f.button :submit, "Créer la demande", class: "btn btn-primary" %>
+  <div>
+    <%= f.check_box :fullness %>
+    <%= f.label :fullness, "Est-ce complet ?" %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= f.check_box :newness %>
+    <%= f.label :newness, "Est-ce neuf ?" %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= f.label :system_prompt, "Instructions supplémentaires" %><br>
+    <%= f.text_area :system_prompt %>
+  </div>
+
+  <br>
+
+  <div>
+    <%= f.label :photo, "Ajouter une photo" %><br>
+    <%= f.file_field :photo %>
+  </div>
+
+  <br>
+
+  <%= f.submit "Créer la demande", class: "btn btn-primary" %>
+
 <% end %>
