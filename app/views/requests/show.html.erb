@@ -1,33 +1,36 @@
-<%= cl_image_tag @request.photo.key, height: 300, width: 400, crop: :fill %>
+<div class=main-container>
+  <div class="row">
+    <div class="col">
+      <h1><%= @request.id %></h1>
 
-<div class="row">
-  <div class="col">
-    <h1><%= @request.name %></h1>
-    <%= raw(render_markdown(@request.content)) %>
-  </div>
-  <div class="col-md-3">
-    <h2>Chats</h2>
-    <div class="mb-4">
-      <% if @chats.any? %>
-        <ul>
-          <% @chats.each do |chat| %>
-            <li><%= link_to chat.title, chat_path(chat) %></li>
-          <% end %>
-        </ul>
-      <% else %>
-        There are no chats yet.
-      <% end %>
-      <div class="row">
-        <div class="col">
-          <h1><%= @request.name %></h1>
-          <%= raw(render_markdown(@request.content)) %>
-        </div>
-        <div class="col-md-3">
-          <h2>Chats</h2>
-          <!-- ... -->
-          <%= button_to "New chat", request_chats_path(@request), class: "btn btn-primary" %>
-        </div>
+    </div>
+    <div class="col-md-3">
+      <h2>Old chats</h2>
+      <div class="mb-4">
+        <% if @chats.any? %>
+          <ul>
+            <% @chats.each do |chat| %>
+              <li><%= link_to chat.title, chat_path(chat) %></li>
+            <% end %>
+          </ul>
+        <% else %>
+          There are no chats yet.
+        <% end %>
       </div>
+    </div>
+  </div>
+
+<p>--------------------------------------------------------------------------</p>
+
+  <div class="row">
+    <div class="col">
+      <h2>L'état de propreté de l'objet est : <%= @request.cleanliness %></h2>
+      <h2>Est-il complet ? : <%= @request.fullness %></h2>
+      <h2>Est-il neuf ? : <%= @request.newness %></h2>
+    </div>
+    <div class="col-md-3">
+      <!-- ... -->
+      <%= button_to "New chat", request_chats_path(@request), class: "btn btn-primary" %>
     </div>
   </div>
 </div>
