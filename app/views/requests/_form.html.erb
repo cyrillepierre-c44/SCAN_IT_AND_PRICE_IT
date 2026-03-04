@@ -3,7 +3,7 @@
 <%= simple_form_for @request do |f| %>
   <%= f.input :cleanliness,
     label: "Niveau de propreté",
-    collection: ["Très sale", "Sale", "Correct", "Propre", "Très propre"],
+    collection: ["Très sale", "Sale", "Propre", "Très propre"],
     prompt: "Sélectionnez un niveau" %>
 
   <%= f.input :fullness,
