@@ -1,14 +1,21 @@
 class ChatsController < ApplicationController
   def show
-    @chat = Chat.find(params[:id])
+    @chat    = current_user.chats.find(params[:id])
+    @message = Message.new
   end
 
   def create
-    @chat = Chat.new(chat_params)
+    @request = Request.find(params[:request_id])
+
+    @chat = Chat.new(title: "Untitled")
+    @chat.request = @request
+    @chat.user = current_user
+
     if @chat.save
-      redirect_to request_path(@chat)
+      redirect_to chat_path(@chat)
     else
-      render :new, status: :unprocessable_entity
+      @chats = @request.chats.where(user: current_user)
+      render "requests/show"
     end
   end
 
@@ -16,6 +23,5 @@ class ChatsController < ApplicationController
 
   def chat_params
     params.require(:chat).permit(:title, :user_id, :request_id)
->>>>>>> master
   end
 end
