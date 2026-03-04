@@ -1,5 +1,3 @@
-<h1>Request questionnaire</h1>
-
 <%= simple_form_for @request do |f| %>
   <%= f.input :cleanliness,
     label: "Niveau de propreté",
@@ -7,12 +5,13 @@
     prompt: "Sélectionnez un niveau" %>
 
   <%= f.input :fullness,
-    label: "Est-ce plein ?" %>
+    label: "Est-ce complet ?" %>
 
   <%= f.input :newness,
     label: "Est-ce neuf ?" %>
 
   <%= f.input :system_prompt,
     label: "Instructions supplémentaires", as: :text %>
+    <%= f.input :photo, as: :file %>
   <%= f.button :submit, "Créer la demande", class: "btn btn-primary" %>
 <% end %>
