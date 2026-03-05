@@ -10,7 +10,7 @@
       <h2>Archive des demandes</h2>
         <br>
       <% @requests.each do |request| %>
-        <li><%=  link_to "Recherche archivée N°#{request.id}", request_path(request), style:"text-decoration: none" %></li>
+        <li><%= link_to "Recherche archivée N°#{request.id}", request_path(request), style:"text-decoration: none" %></li>
       <% end %>
       <br>
       <%= link_to "Créer une nouvelle demande", requests_new_path, class: "btn btn-primary" %>
@@ -21,4 +21,5 @@
     </div>
 
   </div>
+  <%= link_to "Qui sommes-nous ?", about_us_path %>
 </div>
