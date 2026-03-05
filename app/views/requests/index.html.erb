@@ -1,18 +1,24 @@
-<h1>LE JUSTE PRIX </h1>
 
-<P></P>
+<div class="container">
 
-<h2>Liste des recherches</h1>
+  <div class="d-flex justify-content-between">
+    <div>
+      <h1>
+        <i class="fa-solid fa-euro-sign"> LE PRIX JUSTE</i>
+      </h1>
 
-<% @requests.each do |request| %>
-  <li><%= link_to request.id, request_path(request) %></li>
-<% end %>
+      <h2>Archive des demandes</h2>
+        <br>
+      <% @requests.each do |request| %>
+        <li><%=  link_to "Recherche archivée N°#{request.id}", request_path(request), style:"text-decoration: none" %></li>
+      <% end %>
+      <br>
+      <%= link_to "Créer une nouvelle demande", requests_new_path, class: "btn btn-primary" %>
+    </div>
 
-<p></p>
+    <div>
+      <%= image_tag "roue2.png", class: "img-responsive", alt: "la roue du jeu télévisé 'le juste prix'", height:"300px" %>
+    </div>
 
-<%= link_to "create a new request", requests_new_path, class: "btn btn-primary" %>
-
-<%#
-<%= simple_form_for(@request) do |f| %>
-  <%# <%= f.input :photo, as: :file %>
-<%# <% end %>
+  </div>
+</div>
