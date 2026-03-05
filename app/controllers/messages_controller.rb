@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-SYSTEM_PROMPT = "Vous êtes un expert en vente d'articles d'occasion de toutes sortes. Je travaille pour une entreprise qui vend des jouets d'occasion et je souhaiterais savoir à quel prix je peux les vendre. Pourriez-vous m'aider à trouver le meilleur prix d'occasion en tenant compte du prix du neuf et des prix pratiqués par la concurrence ? Merci de me conseiller un prix bas."
+SYSTEM_PROMPT = "Vous êtes un expert en vente d'articles d'occasion de toutes sortes. Je travaille pour une entreprise qui vend des jouets d'occasion et je souhaiterais savoir à quel prix je peux les vendre. Peux-tu m'aider à trouver le meilleur prix d'occasion en tenant compte du prix du neuf et des prix pratiqués par la concurrence?"
 
   def create
     @chat = current_user.chats.find(params[:chat_id])
@@ -29,7 +29,7 @@ SYSTEM_PROMPT = "Vous êtes un expert en vente d'articles d'occasion de toutes s
   private
 
   def request_context
-    "L'objet à évaluer est un jouet qui est #{@request.system_prompt}."
+    "Pour évaluer le prix de vente de l'objet, tu dois impérativement tenir compte du contexte suivant, l'objet est #{@request.system_prompt}. Merci de me faire une réponse courte de 20 mots maximum avec une seule fourchette de prix bas"
   end
 
   def process_file(file)
@@ -59,6 +59,6 @@ SYSTEM_PROMPT = "Vous êtes un expert en vente d'articles d'occasion de toutes s
   end
 
   def instructions
-    toto = [request_context, SYSTEM_PROMPT].compact.join(" ")
+    toto = [SYSTEM_PROMPT, request_context].compact.join(" ")
   end
 end
