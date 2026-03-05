@@ -28,9 +28,6 @@ SYSTEM_PROMPT = "You are an expert in second hand vendor for all types of object
 
   private
 
-
-
-
   def process_file(file)
     if file.content_type == "application/pdf"
       send_question(model: "gemini-2.0-flash", with: { pdf: @message.file.url })
