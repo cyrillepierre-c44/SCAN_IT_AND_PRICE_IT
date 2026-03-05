@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/about", to: "static_pages#about"
   devise_for :users
   root to: "requests#index"
   get "requests/new"
