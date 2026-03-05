@@ -3,7 +3,7 @@ class Message < ApplicationRecord
   MAX_USER_MESSAGES = 10
 
   validate :user_message_limit, if: -> { role == "user" }
-
+  has_one_attached :file
   private
 
   def user_message_limit
