@@ -1,5 +1,5 @@
 class Request < ApplicationRecord
-  @cleanliness = ["Très propre", "Propre", "Sale", "Très sale"]
+  @cleanliness = ["très propre", "propre", "sale", "très sale"]
   has_one_attached :file
   has_many :chats, dependent: :destroy
 

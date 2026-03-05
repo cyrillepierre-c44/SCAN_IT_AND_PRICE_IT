@@ -13,7 +13,7 @@ class Chat < ApplicationRecord
     return unless title == DEFAULT_TITLE
 
     first_user_message = messages.where(role: "user").order(:created_at).first
-    return if first_user_message.nil?
+    return if first_user_message.nil? || first_user_message.content.blank?
 
     response = RubyLLM.chat.with_instructions(TITLE_PROMPT).ask(first_user_message.content)
     update(title: response.content)
