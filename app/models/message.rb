@@ -1,6 +1,6 @@
 class Message < ApplicationRecord
   belongs_to :chat
-  MAX_USER_MESSAGES = 10
+  MAX_USER_MESSAGES = 6
 
   validate :user_message_limit, if: -> { role == "user" }
   has_one_attached :file

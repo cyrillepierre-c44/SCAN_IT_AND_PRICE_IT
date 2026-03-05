@@ -4,7 +4,7 @@
 
 <div id="new_message_container">
   <%= simple_form_for [@chat, @message] do |f| %>
-    <%= f.input :content, label: "Discuter", required: true, placeholder: "Ecrire ici l'information" %>
+    <%= f.input :content, label: "Discuter", required: true, placeholder: "Décrire la marque de l'objet et autres informations" %>
     <%= f.input :file, as: :file, label: "déposer la photo de l'objet ici" %>
     <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
   <% end %>
