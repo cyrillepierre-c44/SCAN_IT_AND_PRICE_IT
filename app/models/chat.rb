@@ -1,7 +1,7 @@
 class Chat < ApplicationRecord
   belongs_to :user
   belongs_to :request
-  has_many :messages
+  has_many :messages, dependent: :destroy
   validates :title, presence: true
 
   DEFAULT_TITLE = "Untitled"
