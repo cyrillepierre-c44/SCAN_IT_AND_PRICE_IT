@@ -4,7 +4,7 @@
 
 <div id="new_message_container">
   <%= simple_form_for [@chat, @message] do |f| %>
-    <%= f.input :content, label: "Poser une question", required: true, placeholder: "Quel complément souhaites-tu apporter?" %>
+    <%= f.input :content, label: "Discuter", required: true, placeholder: "Ecrire ici l'information" %>
     <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
   <% end %>
 </div>

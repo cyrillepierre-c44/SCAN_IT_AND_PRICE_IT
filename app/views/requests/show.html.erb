@@ -1,11 +1,11 @@
 <div class=main-container>
   <div class="row">
     <div class="col">
-      <h1>Requête numéro <%= @request.id %></h1>
+      <h1>Demande N°<%= @request.id %></h1>
 
     </div>
     <div class="col-md-3">
-      <h2>Old chats</h2>
+      <h2>Discussions existantes</h2>
       <div class="mb-4">
         <% if @chats.any? %>
           <ul>
@@ -14,7 +14,7 @@
             <% end %>
           </ul>
         <% else %>
-          There are no chats yet.
+          Il n'y a pas de encore de discussion
         <% end %>
       </div>
     </div>
@@ -30,7 +30,7 @@
     </div>
     <div class="col-md-3">
       <!-- ... -->
-      <%= button_to "New chat", request_chats_path(@request), class: "btn btn-primary" %>
+      <%= button_to "Nouvelle discussion", request_chats_path(@request), class: "btn btn-primary" %>
     </div>
   </div>
 </div>
