@@ -11,12 +11,15 @@ SYSTEM_PROMPT = "You are an expert in second hand vendor for all types of object
     @chat.generate_title_from_first_message
 
     if @message.save
-      @ruby_llm_chat = RubyLLM.chat
-      build_conversation_history
-      response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
-      Message.create(role: "assistant", content: response.content, chat: @chat)
+      if @message.file.attached?
+        process_file(@message.file)
+      else
+        send_question
+      end
 
-      redirect_to chat_path(@chat)
+    @chat.messages.create(role: "assistant", content: @response.content)
+    @chat.generate_title_from_first_message
+
     else
       render "chats/show", status: :unprocessable_entity
     end
@@ -24,8 +27,26 @@ SYSTEM_PROMPT = "You are an expert in second hand vendor for all types of object
 
   private
 
+
+
+
+  def process_file(file)
+    if file.content_type == "application/pdf"
+      send_question(model: "gemini-2.0-flash", with: { pdf: @message.file.url })
+    elsif file.image?
+      send_question(model: "gpt-4o", with: { image: @message.file.url })
+    end
+  end
+
+  def send_question (model: "gpt-4", with: {})
+    @ruby_llm_chat = RubyLLM.chat(model: model)
+    build_conversation_history
+    @ruby_llm_chat.with_instructions(instructions)
+    @response = @ruby_llm_chat.ask(@message.content, with: with)
+  end
+
   def message_params
-  params.require(:message).permit(:content)
+  params.require(:message).permit(:content, :file)
   end
 
   def build_conversation_history
@@ -36,6 +57,21 @@ SYSTEM_PROMPT = "You are an expert in second hand vendor for all types of object
 
   def request_context
     "Here is the context of the request: #{@request.system_prompt}."
+  end
+
+  def process_file(file)
+    if file.content_type == "application/pdf"
+      send_question(model: "gemini-2.0-flash", with: { pdf: @message.file.url })
+    elsif file.image?
+      send_question(model: "gpt-4o", with: { image: @message.file.url })
+    end
+  end
+
+  def send_question (model: "gpt-4", with: {})
+    @ruby_llm_chat = RubyLLM.chat(model: model)
+    # build_conversation_history
+    @ruby_llm_chat.with_instructions(SYSTEM_PROMPT)
+    @response = @ruby_llm_chat.ask(@message.content, with: with)
   end
 
   def instructions
