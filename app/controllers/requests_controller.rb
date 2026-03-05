@@ -23,6 +23,11 @@ class RequestsController < ApplicationController
 
   def update
     @request = Request.find(params[:id])
+    boolean = ActiveModel::Type::Boolean.new
+    fullness = boolean.cast(params[:request][:fullness]) ? 'complet' : 'incomplet'
+    newness  = boolean.cast(params[:request][:newness])  ? 'neuf' : "d'occasion"
+    system_prompt = "#{fullness}, #{newness} et #{params[:request][:cleanliness]}"
+    @request.system_prompt = system_prompt
     if @request.update(request_params)
       redirect_to request_path(@request)
     else
