@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/about", to: "static_pages#about"
   devise_for :users
   root to: "requests#index"
   get "requests/new"
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  resources :requests, only: [:index, :show, :create ] do
+  resources :requests, only: [:index, :show, :create, :destroy, :update] do
     resources :chats, only: [:create]
   end
 

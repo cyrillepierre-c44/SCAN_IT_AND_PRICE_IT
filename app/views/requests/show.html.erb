@@ -1,4 +1,4 @@
-<div class=main-container>
+<div class="main-container">
   <div class="row">
     <div class="col">
       <h1>Demande N°<%= @request.id %></h1>
@@ -20,17 +20,20 @@
     </div>
   </div>
 
-<p>--------------------------------------------------------------------------</p>
-
   <div class="row">
     <div class="col">
-      <h2>L'état de propreté de l'objet est : <%= @request.cleanliness %></h2>
-      <h2>Est-il complet ? : <%= @request.fullness %></h2>
-      <h2>Est-il neuf ? : <%= @request.newness %></h2>
+      <h3>Modifier la request</h3>
+      <%= render "form", request: @request %>
     </div>
     <div class="col-md-3">
       <!-- ... -->
-      <%= button_to "Nouvelle discussion", request_chats_path(@request), class: "btn btn-primary" %>
+      <%= button_to "Nouvelle discussion", request_chats_path(@request), class: "btn btn-primary", data: { turbo_method: :delete, turbo_confirm: "Confirmer ?" } %>
     </div>
   </div>
+  <br>
+  <br>
+<p>--------------------------------------------------------------------------</p>
+  <br>
+  <br>
+<%= link_to "Supprimer la request", request_path(@request), data: { turbo_method: :delete, turbo_confirm: "Confirmer la suppression ?" }, class: "btn btn-warning m-3" %>
 </div>
