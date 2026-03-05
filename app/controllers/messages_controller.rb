@@ -20,6 +20,7 @@ SYSTEM_PROMPT = "You are an expert in second hand vendor for all types of object
     @chat.messages.create(role: "assistant", content: @response.content)
     @chat.generate_title_from_first_message
 
+    redirect_to chat_path(@chat)
     else
       render "chats/show", status: :unprocessable_entity
     end
@@ -77,5 +78,4 @@ SYSTEM_PROMPT = "You are an expert in second hand vendor for all types of object
   def instructions
     [SYSTEM_PROMPT, request_context, @request.system_prompt].compact.join("\n\n")
   end
-
 end
