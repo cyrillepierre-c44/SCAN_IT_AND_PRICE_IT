@@ -1,14 +1,14 @@
 <%= simple_form_for @request do |f| %>
   <%= f.input :cleanliness,
     label: "Niveau de propreté",
-    collection: ["Très sale", "Sale", "Propre", "Très propre"],
+    collection: ["très sale", "sale", "propre", "très propre"],
     prompt: "Sélectionnez un niveau" %>
 
   <%= f.input :fullness,
-    label: "Est-ce complet ?" %>
+    label: "Cocher si complet" %>
 
   <%= f.input :newness,
-    label: "Est-ce neuf ?" %>
+    label: "Cocher si neuf" %>
 
-  <%= f.button :submit, "Soumettre", class: "btn btn-primary" %>
+  <%= f.button :submit, "Créer la demande", class: "btn btn-primary" %>
 <% end %>

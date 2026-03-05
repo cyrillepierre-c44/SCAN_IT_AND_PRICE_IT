@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-SYSTEM_PROMPT = "You are an expert in second hand vendor for all types of objects.\n\nI am a person working for a compagny that sells second hand objects as toys, wanted to know how much can I sell them.\n\nHelp me to find the best second hand price regarding the cost of new and the second hand price you can find if you look at the competitors.\n\nAnswer me inside a table with a mid, low and high prices you will advise."
+SYSTEM_PROMPT = "Vous êtes un expert en vente d'articles d'occasion de toutes sortes. Je travaille pour une entreprise qui vend des jouets d'occasion et je souhaiterais savoir à quel prix je peux les vendre. Pourriez-vous m'aider à trouver le meilleur prix d'occasion en tenant compte du prix du neuf et des prix pratiqués par la concurrence ? Merci de me conseiller un prix bas."
 
   def create
     @chat = current_user.chats.find(params[:chat_id])
@@ -28,6 +28,10 @@ SYSTEM_PROMPT = "You are an expert in second hand vendor for all types of object
 
   private
 
+  def request_context
+    "L'objet à évaluer est un jouet qui est #{@request.system_prompt}."
+  end
+
   def process_file(file)
     if file.content_type == "application/pdf"
       send_question(model: "gemini-2.0-flash", with: { pdf: @message.file.url })
@@ -36,10 +40,11 @@ SYSTEM_PROMPT = "You are an expert in second hand vendor for all types of object
     end
   end
 
-  def send_question (model: "gpt-4", with: {})
+  def send_question (model: "gpt-4.1", with: {})
     @ruby_llm_chat = RubyLLM.chat(model: model)
     build_conversation_history
-    @ruby_llm_chat.with_instructions(instructions)
+    question = @ruby_llm_chat.with_instructions(instructions)
+    puts question
     @response = @ruby_llm_chat.ask(@message.content, with: with)
   end
 
@@ -53,26 +58,7 @@ SYSTEM_PROMPT = "You are an expert in second hand vendor for all types of object
     end
   end
 
-  def request_context
-    "Here is the context of the request: #{@request.system_prompt}."
-  end
-
-  def process_file(file)
-    if file.content_type == "application/pdf"
-      send_question(model: "gemini-2.0-flash", with: { pdf: @message.file.url })
-    elsif file.image?
-      send_question(model: "gpt-4o", with: { image: @message.file.url })
-    end
-  end
-
-  def send_question (model: "gpt-4", with: {})
-    @ruby_llm_chat = RubyLLM.chat(model: model)
-    # build_conversation_history
-    @ruby_llm_chat.with_instructions(SYSTEM_PROMPT)
-    @response = @ruby_llm_chat.ask(@message.content, with: with)
-  end
-
   def instructions
-    [SYSTEM_PROMPT, request_context, @request.system_prompt].compact.join("\n\n")
+    toto = [request_context, SYSTEM_PROMPT].compact.join(" ")
   end
 end
