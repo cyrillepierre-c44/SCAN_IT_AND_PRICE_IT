@@ -1,23 +1,49 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-8">
+      <h1 class="mb-4">Archive des demandes</h1>
 
-<div class="container">
-
-  <div class="d-flex justify-content-between">
-    <div>
-      <h2>Archive des demandes</h2>
-        <br>
-      <% @requests.each do |request| %>
-        <li><%= link_to "Recherche archivée N°#{request.id}", request_path(request), style:"text-decoration: none" %></li>
+      <% if @requests.any? %>
+        <div class="row g-4">
+          <% @requests.each do |request| %>
+            <div class="col-md-6">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= link_to "Demande ##{request.id}", request_path(request), class: "text-decoration-none" %>
+                  </h5>
+                  <p class="card-text text-muted mb-0">
+                    <small>Créée le <%= l(request.created_at, format: :long) %></small>
+                  </p>
+                </div>
+                <div class="card-footer bg-transparent border-0">
+                  <%= link_to "Voir détails", request_path(request), class: "btn btn-sm btn-outline-primary" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="alert alert-info">
+          <p class="mb-0">Aucune demande pour le moment.</p>
+        </div>
       <% end %>
-      <br>
-      <%= link_to "Créer une nouvelle demande", requests_new_path, class: "btn btn-primary" %>
+
+      <div class="mt-4">
+        <%= link_to "Créer une nouvelle demande", requests_new_path, class: "btn btn-primary" %>
+      </div>
     </div>
 
-    <div>
-      <%= image_tag "roue2.png", class: "img-responsive", alt: "la roue du jeu télévisé 'le juste prix'", height:"300px" %>
+    <div class="col-lg-4 text-center mt-5 mt-lg-0">
+      <div class="position-sticky" style="top: 100px;">
+        <div class="card border-0 shadow overflow-hidden">
+          <%= image_tag "oursons.png", class: "card-img-top", alt: "Oursons en peluche", height:500 %>
+          <div class="card-body">
+            <h5 class="card-title">Le Prix Juste</h5>
+            <p class="card-text text-muted">Estimez la valeur de vos jouets</p>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
-  <%= link_to "Qui sommes-nous ?", about_us_path %>
 </div>
-<br>
-<br>

@@ -1,12 +1,40 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+.navbar {
+  padding: 1rem 0;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.navbar-brand img {
+  height: 50px;
+  object-fit: contain;
 }
 
-.navbar-lewagon .navbar-brand img {
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: $gray !important;
+  padding: 0.5rem 1rem !important;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $gold-dark !important;
+  }
+}
+
+.nav-link.btn {
+  padding: 0.5rem 1rem !important;
+}
+
+.avatar {
   width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border: 2px solid $gold;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }

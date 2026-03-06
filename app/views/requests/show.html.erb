@@ -1,39 +1,46 @@
-<div class="main-container">
+<div class="container py-5">
   <div class="row">
-    <div class="col">
-      <h1>Demande N°<%= @request.id %></h1>
+    <div class="col-lg-8">
+      <h1 class="mb-4">Demande N°<%= @request.id %></h1>
 
+      <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+          <h3 class="mb-4">Modifier la demande</h3>
+          <div class="row">
+            <div class="col-md-8">
+              <%= render "form", request: @request %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="my-4">
+
+      <%= link_to "Supprimer la demande", request_path(@request), data: { turbo_method: :delete, turbo_confirm: "Confirmer la suppression ?" }, class: "btn btn-warning" %>
     </div>
-    <div class="col-md-3">
-      <h2>Discussions existantes</h2>
-      <div class="mb-4">
-        <% if @chats.any? %>
-          <ul>
-            <% @chats.each do |chat| %>
-              <li><%= link_to chat.title, chat_path(chat) %></li>
-            <% end %>
-          </ul>
-        <% else %>
-          Il n'y a pas de encore de discussion
-        <% end %>
+
+    <div class="col-lg-4 mt-4 mt-lg-0">
+      <div class="card shadow-sm border-0">
+        <div class="card-header bg-transparent">
+          <h5 class="mb-0">Discussions existantes</h5>
+        </div>
+        <div class="card-body">
+          <% if @chats.any? %>
+            <ul class="list-group list-group-flush">
+              <% @chats.each do |chat| %>
+                <li class="list-group-item bg-transparent px-0">
+                  <%= link_to chat.title, chat_path(chat), class: "text-decoration-none" %>
+                </li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="text-muted mb-0">Il n'y a pas encore de discussion</p>
+          <% end %>
+        </div>
+        <div class="card-footer bg-transparent">
+          <%= button_to "Nouvelle discussion", request_chats_path(@request), class: "btn btn-primary btn-sm w-100", data: { turbo_method: :post, turbo_confirm: "Créer une nouvelle discussion ?" } %>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col">
-      <h3>Modifier la request</h3>
-      <%= render "form", request: @request %>
-    </div>
-    <div class="col-md-3">
-      <!-- ... -->
-      <%= button_to "Nouvelle discussion", request_chats_path(@request), class: "btn btn-primary", data: { turbo_method: :delete, turbo_confirm: "Confirmer ?" } %>
-    </div>
-  </div>
-  <br>
-  <br>
-<p>--------------------------------------------------------------------------</p>
-  <br>
-  <br>
-<%= link_to "Supprimer la request", request_path(@request), data: { turbo_method: :delete, turbo_confirm: "Confirmer la suppression ?" }, class: "btn btn-warning m-3" %>
 </div>
