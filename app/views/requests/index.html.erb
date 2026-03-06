@@ -1,3 +1,7 @@
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-8">
+      <h1 class="mb-4">Archive des demandes</h1>
 
 <div class="container">
 
@@ -9,16 +13,22 @@
       <% @requests.each do |request| %>
         <li><%= link_to "Recherche archivée N°#{request.id}", request_path(request), style:"text-decoration: none" %></li>
       <% end %>
-      <br>
-      <%= link_to "Créer une nouvelle demande", requests_new_path, class: "btn btn-primary" %>
+
+      <div class="mt-4">
+        <%= link_to "Créer une nouvelle demande", requests_new_path, class: "btn btn-primary" %>
+      </div>
     </div>
 
-    <div>
-      <%= image_tag "roue2.png", class: "img-responsive", alt: "la roue du jeu télévisé 'le juste prix'", height:"300px" %>
+    <div class="col-lg-4 text-center mt-5 mt-lg-0">
+      <div class="position-sticky" style="top: 100px;">
+        <div class="card border-0 shadow overflow-hidden">
+          <%= image_tag "oursons.png", class: "card-img-top", alt: "Oursons en peluche", height:500 %>
+          <div class="card-body">
+            <h5 class="card-title">Le Prix Juste</h5>
+            <p class="card-text text-muted">Estimez la valeur de vos jouets</p>
+          </div>
+        </div>
+      </div>
     </div>
-
   </div>
-  <%= link_to "Qui sommes-nous ?", about_us_path %>
 </div>
-<br>
-<br>

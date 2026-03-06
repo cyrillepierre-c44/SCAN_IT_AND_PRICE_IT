@@ -1,48 +1,57 @@
-<%= link_to "← Requête numéro #{@chat.request.id}", request_path(@chat.request) %>
+<div class="chat-container py-4">
+  <div class="container">
+    <%= link_to "← Requête numéro #{@chat.request.id}", request_path(@chat.request), class: "text-muted text-decoration-none mb-3 d-inline-block" %>
 
-<h1 id="chat_title"><%= @chat.title %></h1>
+    <h1 id="chat_title" class="mb-4"><%= @chat.title %></h1>
 
-<div id="messages_container">
-  <% @chat.messages.order(:created_at).each do |message| %>
+    <div id="messages_container" class="mb-4">
+      <% @chat.messages.order(:created_at).each do |message| %>
+        <% if message.role == "user" %>
+          <div class="d-flex justify-content-end mb-3">
+            <div class="message-bubble user-message px-4 py-3 rounded-3 shadow-sm">
+              <%= message.content %>
+            </div>
+          </div>
+        <% elsif message.role == "assistant" %>
+          <div class="d-flex justify-content-start mb-3">
+            <div class="message-buble assistant-message px-4 py-3 rounded-3 shadow-sm">
+              <%= message.content %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
 
-    <% if message.role == "user" %>
-      <div class="d-flex justify-content-end mb-2">
-        <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
-          <%= message.content %>
-        </div>
+    <div id="new_message_container" class="card shadow-sm border-0">
+      <div class="card-body">
+        <%= simple_form_for [@chat, @message] do |f| %>
+          <div class="mb-3">
+            <%= f.input :content,
+              label: "Votre message",
+              required: true,
+              placeholder: "Décrire la marque de l'objet et autres informations",
+              input_html: { class: "form-control" },
+              label_html: { class: "form-label" } %>
+          </div>
+
+          <div class="mb-3">
+            <%= f.input :file,
+              as: :file,
+              label: "Photo de l'objet",
+              input_html: { class: "form-control" },
+              label_html: { class: "form-label" } %>
+          </div>
+
+          <div class="d-grid">
+            <%= f.button :submit, 'Envoyer', class: 'btn btn-primary' %>
+          </div>
+        <% end %>
       </div>
-
-    <% elsif message.role == "assistant" %>
-      <div class="d-flex justify-content-start mb-5">
-        <div class="px-3 pb-0 pt-3">
-          <%= message.content %>
-        </div>
-      </div>
-
-    <% end %>
-
-  <% end %>
+    </div>
+  </div>
 </div>
 
-<div id="new_message_container">
-  <%= simple_form_for [@chat, @message] do |f| %>
-
-    <%= f.input :content,
-      label: "Discuter",
-      required: true,
-      placeholder: "Décrire la marque de l'objet et autres informations" %>
-
-    <%= f.input :file,
-      as: :file,
-      label: "déposer la photo de l'objet ici" %>
-
-    <%= f.button :submit, 'Demander', class: 'btn btn-primary' %>
-
-  <% end %>
-</div>
-
-
-<%# pour le scroll down automatique %>
+<%# Scroll down automatique %>
 <script>
   document.addEventListener("turbo:load", () => {
     window.scrollTo(0, document.body.scrollHeight);

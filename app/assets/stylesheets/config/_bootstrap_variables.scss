@@ -10,19 +10,26 @@ $headings-font-family:   $headers-font;
 $body-bg:                $light-gray;
 $font-size-base:         1rem;
 
-// Colors
+// Colors - Using Juste Prix gold theme
 $body-color: $gray;
-$primary:    $blue;
+$primary:    $gold;
 $success:    $green;
-$info:       $yellow;
+$info:       $blue;
 $danger:     $red;
 $warning:    $orange;
 
 // Buttons & inputs' radius
-$border-radius-sm:            .0625rem;
-$border-radius:               .125rem;
-$border-radius-lg:            .25rem;
-$border-radius-xl:            .5rem;
+$border-radius-sm:            .25rem;
+$border-radius:               .375rem;
+$border-radius-lg:            .5rem;
+$border-radius-xl:            .75rem;
 $border-radius-xxl:           1rem;
 
-// Override other variables below!
+// Link colors
+$link-color:                              $gold-dark;
+$link-hover-color:                        $gold;
+
+// Navbar
+$navbar-light-color:                $gray;
+$navbar-light-hover-color:          $gold-dark;
+$navbar-light-active-color:         $gold;

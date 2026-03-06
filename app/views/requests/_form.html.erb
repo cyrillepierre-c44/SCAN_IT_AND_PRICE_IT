@@ -1,14 +1,29 @@
-<%= simple_form_for @request do |f| %>
-  <%= f.input :cleanliness,
-    label: "Niveau de propreté",
-    collection: ["très sale", "sale", "propre", "très propre"],
-    prompt: "Sélectionnez un niveau" %>
+<div class="request-form">
+  <%= simple_form_for @request do |f| %>
+    <div class="mb-3">
+      <%= f.input :cleanliness,
+        label: "Niveau de propreté",
+        collection: ["très sale", "sale", "propre", "très propre"],
+        prompt: "Sélectionnez un niveau",
+        input_html: { class: "form-select" } %>
+    </div>
 
-  <%= f.input :fullness,
-    label: "Cocher si complet" %>
+    <div class="mb-3 form-check">
+      <%= f.input :fullness,
+        label: "Cocher si complet",
+        input_html: { class: "form-check-input" },
+        wrapper_html: { class: "form-check" } %>
+    </div>
 
-  <%= f.input :newness,
-    label: "Cocher si neuf" %>
+    <div class="mb-3 form-check">
+      <%= f.input :newness,
+        label: "Cocher si neuf",
+        input_html: { class: "form-check-input" },
+        wrapper_html: { class: "form-check" } %>
+    </div>
 
-  <%= f.button :submit, "Soumettre", class: "btn btn-primary" %>
-<% end %>
+    <div class="d-grid gap-2">
+      <%= f.button :submit, "Soumettre", class: "btn btn-primary btn-lg" %>
+    </div>
+  <% end %>
+</div>

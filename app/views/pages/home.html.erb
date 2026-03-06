@@ -1,2 +1,45 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="hero-section">
+  <div class="container">
+    <div class="row align-items-center min-vh-75">
+      <div class="col-lg-6">
+        <h1 class="display-4 fw-bold mb-4">Le Prix Juste</h1>
+        <p class="lead mb-4">Estimez la valeur de vos objets simplement et rapidement grâce à notre intelligence artificielle.</p>
+        <div class="d-flex gap-3">
+          <%= link_to "Créer une demande", requests_new_path, class: "btn btn-primary btn-lg" %>
+          <%= link_to "Voir les archives", requests_path, class: "btn btn-outline-secondary btn-lg" %>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center mt-5 mt-lg-0">
+        <%= image_tag "roue2.png", class: "img-fluid rounded shadow", alt: "Le Prix Juste", style: "max-height: 400px;" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="features-section py-5">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-4 mb-4">
+        <div class="feature-icon mb-3">
+          <i class="fas fa-camera"></i>
+        </div>
+        <h3>Scannez</h3>
+        <p>Prenez en photo vos objets</p>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature-icon mb-3">
+          <i class="fas fa-robot"></i>
+        </div>
+        <h3>IA</h3>
+        <p>Notre intelligence artificielle analyse</p>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature-icon mb-3">
+          <i class="fas fa-tag"></i>
+        </div>
+        <h3>Prix</h3>
+        <p>Obtenez une estimation juste</p>
+      </div>
+    </div>
+  </div>
+</div>

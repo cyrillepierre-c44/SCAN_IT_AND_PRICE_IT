@@ -1,1 +1,82 @@
-// Specific CSS for your home-page
+// Specific CSS for home and requests pages
+
+// Hero section styles
+.hero-section {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 60px 0;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-section h1 {
+  color: $gold-dark;
+  font-size: 3.5rem;
+  line-height: 1.2;
+}
+
+.hero-section .lead {
+  color: $gray;
+  font-size: 1.25rem;
+}
+
+.features-section {
+  background-color: white;
+}
+
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto;
+  background-color: rgba($gold, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  i {
+    font-size: 2rem;
+    color: $gold-dark;
+  }
+}
+
+// Card styles for requests
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+.card-title a {
+  color: $gold-dark;
+
+  &:hover {
+    color: $gold;
+  }
+}
+
+// Chat styles
+.message-bubble {
+  max-width: 75%;
+  word-wrap: break-word;
+}
+
+.user-message {
+  background-color: $gold;
+  color: white;
+}
+
+.assistant-message {
+  background-color: white;
+  color: $gray;
+  border: 1px solid #e9ecef;
+}
+
+#messages_container {
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 0.5rem;
+}
