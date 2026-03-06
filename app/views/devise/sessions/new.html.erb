@@ -1,0 +1,49 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card border-0 shadow-lg">
+        <div class="card-body p-5">
+          <div class="text-center mb-4">
+            <h2 class="fw-bold">Connexion</h2>
+            <p class="text-muted">Accédez à votre compte Le Prix Juste</p>
+          </div>
+
+          <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="mb-3">
+              <%= f.input :email,
+                label: "Email",
+                required: false,
+                autofocus: true,
+                input_html: { class: "form-control", placeholder: "votre@email.com" } %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.input :password,
+                label: "Mot de passe",
+                required: false,
+                input_html: { class: "form-control", placeholder: "••••••••" } %>
+            </div>
+
+            <div class="mb-3 form-check">
+              <%= f.input :remember_me,
+                as: :boolean,
+                label: "Se souvenir de moi",
+                input_html: { class: "form-check-input" },
+                wrapper_html: { class: "form-check" } %>
+            </div>
+
+            <div class="d-grid">
+              <%= f.button :submit, "Se connecter", class: "btn btn-primary btn-lg" %>
+            </div>
+          <% end %>
+
+          <hr class="my-4">
+
+          <div class="text-center">
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
