@@ -39,7 +39,7 @@ class RequestsController < ApplicationController
   def destroy
     @request = Request.find(params[:id])
     if @request.destroy
-      redirect_to requests_path, notice: ""
+      redirect_to requests_path, notice: "Demande supprimée"
     else
       redirect_to requests_path, alert: @request.errors.full_messages
     end
