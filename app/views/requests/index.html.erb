@@ -1,9 +1,10 @@
 
 <div class="container">
 
+      <h2>Archive des demandes</h2>
+
   <div class="d-flex justify-content-between">
     <div>
-      <h2>Archive des demandes</h2>
         <br>
       <% @requests.each do |request| %>
         <li><%= link_to "Recherche archivée N°#{request.id}", request_path(request), style:"text-decoration: none" %></li>
@@ -17,6 +18,7 @@
     </div>
 
   </div>
+  <%= link_to "Qui sommes-nous ?", about_us_path %>
 </div>
 <br>
 <br>
