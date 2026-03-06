@@ -1,34 +1,27 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
   <div class="container">
-    <%= link_to requests_path, class: "navbar-brand me-0" do %>
-      <%= image_tag "logo.png", alt: "Le Prix Juste", height: "50" %>
-    <% end %>
-    <span class="navbar-text mx-auto app-title"><strong>Le Prix Juste</strong></span>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="d-flex w-100 align-items-center">
+      <% if user_signed_in? %>
+        <div class="nav-item dropdown">
+          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= image_tag "image copy.png", class: "avatar rounded-circle", alt: "dropdown menu", width: 40, height: 40 %>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <%= link_to "About us",  about_us_path, class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+          </div>
+        </div>
+      <% else %>
+        <%= image_tag "image copy.png", class: "avatar rounded-circle", alt: "Menu", width: 40, height: 40 %>
+      <% end %>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-        <li class="nav-item">
-          <%= link_to "À propos", about_us_path, class: "nav-link" %>
-        </li>
-        <% if user_signed_in? %>
-          <li class="nav-item dropdown ms-3">
-            <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= image_tag "image copy.png", class: "avatar rounded-circle", alt: "dropdown menu", width: 40, height: 40 %>
-            </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "about us",  about_us_path, class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-          <li class="nav-item ms-3">
-            <%= link_to "Connexion", new_user_session_path, class: "btn btn-outline-primary" %>
-          </li>
-        <% end %>
-      </ul>
+      <div class="flex-grow-1 text-center">
+        <span class="app-title"><strong>Le Prix Juste</strong></span>
+      </div>
+
+      <%= link_to requests_path, class: "navbar-brand" do %>
+        <%= image_tag "logo.png", alt: "Le Prix Juste", height: "50" %>
+      <% end %>
     </div>
   </div>
 </nav>
