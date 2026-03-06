@@ -12,7 +12,7 @@
           </div>
         </div>
       <% else %>
-        <%= link_to "Connexion", new_user_session_path, class: "btn btn-outline-primary" %>
+        <%= image_tag "image copy.png", class: "avatar rounded-circle", alt: "Menu", width: 40, height: 40 %>
       <% end %>
 
       <div class="flex-grow-1 text-center">
@@ -22,10 +22,6 @@
       <%= link_to requests_path, class: "navbar-brand" do %>
         <%= image_tag "logo.png", alt: "Le Prix Juste", height: "50" %>
       <% end %>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
     </div>
   </div>
 </nav>
