@@ -2,27 +2,49 @@
 
 <h1 id="chat_title"><%= @chat.title %></h1>
 
+<div id="messages_container">
+  <% @chat.messages.order(:created_at).each do |message| %>
+
+    <% if message.role == "user" %>
+      <div class="d-flex justify-content-end mb-2">
+        <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
+          <%= message.content %>
+        </div>
+      </div>
+
+    <% elsif message.role == "assistant" %>
+      <div class="d-flex justify-content-start mb-5">
+        <div class="px-3 pb-0 pt-3">
+          <%= message.content %>
+        </div>
+      </div>
+
+    <% end %>
+
+  <% end %>
+</div>
+
 <div id="new_message_container">
   <%= simple_form_for [@chat, @message] do |f| %>
-    <%= f.input :content, label: "Discuter", required: true, placeholder: "Décrire la marque de l'objet et autres informations" %>
-    <%= f.input :file, as: :file, label: "déposer la photo de l'objet ici" %>
+
+    <%= f.input :content,
+      label: "Discuter",
+      required: true,
+      placeholder: "Décrire la marque de l'objet et autres informations" %>
+
+    <%= f.input :file,
+      as: :file,
+      label: "déposer la photo de l'objet ici" %>
+
     <%= f.button :submit, 'Demander', class: 'btn btn-primary' %>
-  <% end %>
 
-<% @chat.messages.each do |message| %>
-  <% if message.role == "user" %>
-    <div class="d-flex justify-content-end mb-2">
-      <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
-        <%= message.content %>
-      </div>
-    </div>
-  <% elsif message.role == "assistant" %>
-    <div class="d-flex justify-content-start mb-5">
-      <div class="px-3 pb-0 pt-3">
-        <%= message.content %>
-      </div>
-    </div>
   <% end %>
-<% end %>
-
 </div>
+
+
+<%# pour le scroll down automatique %>
+<script>
+  document.addEventListener("turbo:load", () => {
+    window.scrollTo(0, document.body.scrollHeight);
+  });
+</script>
