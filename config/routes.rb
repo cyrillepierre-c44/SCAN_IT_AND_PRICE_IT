@@ -23,6 +23,10 @@ Rails.application.routes.draw do
   end
 
   get "about_us", to: "pages#about_us"
+  get "cyrille", to: "pages#cyrille"
+  get "loic", to: "pages#loic"
+  get "marc", to: "pages#marc"
+
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest

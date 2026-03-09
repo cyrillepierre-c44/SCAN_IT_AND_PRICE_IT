@@ -1,9 +1,14 @@
 class PagesController < ApplicationController
-  def home
-
+  def about_us
   end
 
-  def about_us
+  def cyrille
+  end
 
+  def loic
+  end
+
+  def marc
   end
 end
+

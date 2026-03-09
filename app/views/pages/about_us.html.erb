@@ -57,3 +57,26 @@
     </div>
   </div>
 </div>
+
+<!-- Section 3 visuels -->
+<div style="display:flex; gap:20px; justify-content:center; margin-top:40px; flex-wrap:wrap;">
+
+  <div style="width:280px; text-align:center;">
+    <%= image_tag "photo_cyrille.jpg", style: "width:100%; height:auto; border-radius:12px;" %>
+    <p style="margin-top:10px;">Operation manager.</p>
+     <p><%= link_to "Voir le parcours de Cyrille", cyrille_path %></p>
+  </div>
+
+   <div style="width:280px; text-align:center;">
+    <%= image_tag "photo_loic.jpg", style: "width:100%; height:auto; border-radius:12px;" %>
+    <p style="margin-top:10px;">Consutant en ingénierie financière spécifique en financement public.</p>
+    <p><%= link_to "Voir le parcours de Loïc.", loic_path %></p>
+  </div>
+
+   <div style="width:280px; text-align:center;">
+    <%= image_tag "photo_marc.jpg", style: "width:100%; height:auto; border-radius:12px;" %>
+    <p style="margin-top:10px;">Consultant en financement de projets dans un cabinet de conseil.</p>
+    <p><%= link_to "Voir le parcours de Marc.", marc_path %></p>
+  </div>
+
+</div>
